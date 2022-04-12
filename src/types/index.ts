@@ -1,3 +1,5 @@
+import React from 'react'
+
 export interface SourceItem {
 	id: string
 	text: string
@@ -20,4 +22,8 @@ export interface dragItemState {
 export interface TargetBoxProp {
   itemObj: SourceItem
   onDrop: (item: any, _item: SourceItem) => void
+}
+
+export interface LayoutProps {
+  children: React.ReactNode
 }

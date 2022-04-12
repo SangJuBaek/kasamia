@@ -1,8 +1,12 @@
-const BaseLayout = ({ }) => {
+import React from 'react'
+import { LayoutProps } from 'types'
+
+const BaseLayout = (props: LayoutProps) => {
   return (
-    <div>
-    </div>
-  );
-};
+    <>
+      {props.children}
+    </>
+  )
+}
 
 export default BaseLayout
