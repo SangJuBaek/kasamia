@@ -27,3 +27,7 @@ export interface TargetBoxProp {
 export interface LayoutProps {
   children: React.ReactNode
 }
+
+export interface ListDataState {
+  listData: any[]
+}

@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import dragItemReducer from 'store/dummy'
+import listDataReducer from 'store/list'
 
 export const store = configureStore({
   reducer: {
-    dragItem: dragItemReducer
+    listData: listDataReducer
   },
 })
 

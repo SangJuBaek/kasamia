@@ -1,27 +1,29 @@
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
+import { RootState, useAppDispatch } from 'store'
+import { useSelector } from 'react-redux'
+import { setListData } from 'store/list'
+import { useEffect } from 'react'
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
+  { field: 'id', headerName: 'ID' },
+  { field: 'firstName', headerName: 'First name' },
+  { field: 'lastName', headerName: 'Last name' },
   {
     field: 'age',
     headerName: 'Age',
-    type: 'number',
-    width: 90,
+    type: 'number'
   },
   {
     field: 'fullName',
     headerName: 'Full name',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
-    width: 160,
     valueGetter: (params: GridValueGetterParams) =>
       `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
 ];
 
-const rows = [
+const testRows = [
   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
   { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
   { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
@@ -33,7 +35,15 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ]
 
+
 const List = () => {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(setListData(testRows))
+    }, 3000)
+  }, [dispatch])
+  const rows: any[] = useSelector((state: RootState) => state.listData.listData)
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
