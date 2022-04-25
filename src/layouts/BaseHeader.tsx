@@ -18,6 +18,12 @@ const BaseHeader = () => {
         <Link to="/toastGrid">ToastGrid</Link>
       </li>
       <li>
+        <Link to="/reactDataGrid">ReactDataGrid</Link>
+      </li>
+      <li>
+        <Link to="/ejGrid">EjGrid</Link>
+      </li>
+      <li>
         <Link to="/form">Form</Link>
       </li>
     </ul>

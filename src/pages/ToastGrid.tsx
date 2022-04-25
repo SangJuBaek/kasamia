@@ -3,7 +3,7 @@ import Grid from '@toast-ui/react-grid'
 import { RootState, useAppDispatch } from 'store'
 import { useSelector } from 'react-redux'
 import { setListData } from 'store/list'
-import { useEffect, useState } from 'react'
+import { createRef, useEffect, useRef, useState } from 'react'
 
 const testRows: any[] = [
   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
@@ -26,21 +26,26 @@ const columns = [
 
 
 function ToastGrid () {
-  const [listState, setListState] = useState<any[]>([])
+  // const [listState, setListState] = useState<any[]>([])
   // const dispatch = useAppDispatch()
   // useEffect(() => {
   //   setTimeout(() => {
   //     dispatch(setListData(testRows))
   //   }, 3000)
   // }, [dispatch])
-  const rows: any[] = useSelector((state: RootState) => state.listData.listData)
+  const rows: any[] = [...useSelector((state: RootState) => state.listData.listData)]
+  // debugger
+  // rows.forEach((item, idx) => {item.rowKey = idx + 'test'})
+  // debugger
+  
   // const rows: any[] = []
-  setTimeout(() => {
-    setListState(testRows)
-  }, 3000)
+  // setTimeout(() => {
+  //   setListState(rows)
+  // }, 3000)
+  
   return (
     <Grid
-      data={listState}
+      data={rows}
       columns={columns}
       rowHeight={25}
       bodyHeight={100}

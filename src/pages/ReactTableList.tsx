@@ -31,23 +31,23 @@ const ReactTableFunc = ({ columns, data }: TableOptions<{}>) => {
     data,
   })
   return (
-    <table {...getTableProps()}>
-      <thead>
+    <table className="rt-table" {...getTableProps()}>
+      <thead className="rt-thead">
         {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+          <tr className="rt-tr" {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+              <th className="rt-th" {...column.getHeaderProps()}>{column.render('Header')}</th>
             ))}
           </tr>
         ))}
       </thead>
-      <tbody {...getTableBodyProps()}>
+      <tbody className="rt-tbody" {...getTableBodyProps()}>
         {rows.map((row, i) => {
           prepareRow(row)
           return (
-            <tr {...row.getRowProps()}>
+            <tr className="rt-tr" {...row.getRowProps()}>
               {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                return <td className="rt-td" {...cell.getCellProps()}>{cell.render('Cell')}</td>
               })}
             </tr>
           )
@@ -97,9 +97,18 @@ function ReactTableList () {
     ],
     []
   )
-  const data = useMemo(() => makeData(20), [])
+  const dispatch = useAppDispatch()
+  const data = makeData(20)
+  const rows: any[] = useSelector((state: RootState) => state.listData.listData)
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(setListData(data))
+    }, 3000)
+  }, [])
   return (
-    <ReactTableFunc columns={columns} data={data} />
+    <div className="ReactTable" >
+      <ReactTableFunc columns={columns} data={rows} />
+    </div>
   )
 }
 
